@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Analog Joystick</title>
+        <link rel="stylesheet" href="assets/css/joystick.css">
+        <link rel="stylesheet" href="assets/css/demo.css">
+    </head>
+    <body class="demo-two">
+
+        <main>
+            
+            <div>
+
+                <section>
+                    <h1>
+                        <small>Just a simple</small><br />
+                        analog joystick example
+                    </h1>
+                </section>
+    
+                <section class="joystick-state">No action detected</section>
+    
+                <section class="joystick-container"></section>
+            
+            </div>
+
+        </main>
+
+        <script src="assets/js/joystickAnalogControls.js"></script>
+        <script>
+            let joystickStatusElement = document.querySelector(".joystick-state");
+
+            // Example of use:
+            const joystick = new JoystickAnalog({
+                parentElement: '.joystick-container',
+                pressKeyFunction: false,
+                releaseKeysFunction:  () => {
+                    console.log('releaseKeysFunction');
+                    joystickStatusElement.innerHTML = 'No action detected';
+                },
+                beforePressKey: () => {
+                    console.log('Before pressKey');
+                    // Custom logic to run before pressKey
+                },
+                afterPressKey: (key) => {
+                    console.log('After the pressKey');
+                    // Custom logic to run after pressKey
+                    joystickStatusElement.innerHTML = 'Pressing the key: ' + key;
+                },
+                beforeReleaseKeys: () => {
+                    console.log('Before releaseKeys');
+                    // Custom logic to run before releaseKeys
+                },
+                afterReleaseKeys: () => {
+                    console.log('After releaseKeys');
+                    // Custom logic to run after releaseKeys
+                },
+                enableDebug: true
+            });
+        </script>
+    </body>
+</html>
